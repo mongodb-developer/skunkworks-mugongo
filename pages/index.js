@@ -10,7 +10,7 @@ export default function Home({ isConnected }) {
       </Head>
 
       <main>
-        <img src="./mug.svg" alt="Mugongo" width="410" height="120"/>
+        <img src="./mug.svg" alt="Mugongo" width="410" height="120" />
         <h1 className="Events">
           MongoDB User Group Logging App
         </h1>
@@ -33,6 +33,16 @@ export default function Home({ isConnected }) {
           <a href="http://localhost:3000/group" className="card">
             <h3>MUG's Groups &rarr;</h3>
             <p>Learn about MUG Groups.</p>
+          </a>
+
+          <a href="http://localhost:3000/organizer" className="card">
+            <h3>MUG's Organizers &rarr;</h3>
+            <p>Learn about MUG Organizers.</p>
+          </a>
+
+          <a href="http://localhost:3000/form" className="card">
+            <h3>Insert MUG's Data &rarr;</h3>
+            <p>Save your data instantly into your MongoDB database.</p>
           </a>
         </div>
       </main>
