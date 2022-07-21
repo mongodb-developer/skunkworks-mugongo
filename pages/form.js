@@ -4,28 +4,15 @@ import TextField from '@mui/material/TextField';
 
 export default function FormPropsTextFields() {
   return (
-    <Box
-      component="form"
-      sx={{
-        '& .MuiTextField-root': { m: 1, width: '25ch' },
-      }}
-      noValidate
-      autoComplete="off"
-    >
-      <div>
-        <TextField
-          required
-          id="outlined-required"
-          label="Required"
-          defaultValue="Name"
-        />
-        <TextField
-          id="outlined-basic"
-          label="Not Required"
-          defaultValue="Company"
-        />
-        
-      </div>
-     </Box>
+<form action="/api/submit" method="post">
+
+  <label for="first">First name:</label>
+
+  <input type="text" id="first" name="first" />
+  <label for="company">Company:</label>
+
+  <input type="text" id="last" name="last" />
+  <button type="submit">Submit</button>
+</form>
   );
 }
