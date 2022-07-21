@@ -39,36 +39,54 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 
 //Columns Rendering For Sticky Header
 const columns = [
-    { id: 'Title',
-     label: 'Title', 
+    { id: 'Sno',
+     label: 'Sno', 
      minWidth: 100 
     },
-    { id: 'Group', 
-      label: 'Group', 
+    { id: 'Groups', 
+      label: 'Groups', 
       align: 'center',
       minWidth: 100
     },
     {
-      id: 'Type',
-      label: 'Type',
+      id: 'Established',
+      label: 'Established',
       minWidth: 100,
       align: 'center',
     },
     {
-      id: 'Date',
-      label: 'Date',
+      id: 'First Event Date',
+      label: 'First Event Date',
       minWidth: 100,
       align: 'center',
     },
     {
-      id: 'Attendees',
-      label: 'Attendees',
+        id: 'Quarter of First Event',
+        label: 'Quarter of First Event',
+        minWidth: 100,
+        align: 'center',
+      },
+    {
+      id: 'Number of events',
+      label: 'Number of events',
       minWidth: 100,
       align: 'center',
     },
-    {
-        id: 'Expenditure',
-        label: 'Expenditure',
+      {
+        id: 'Last Event Date',
+        label: 'Last Event Dater',
+        minWidth: 100,
+        align: 'center',
+      },
+      {
+        id: 'Number of Active Organizer',
+        label: 'Number of Active Organizer',
+        minWidth: 100,
+        align: 'center',
+      },
+      {
+        id: 'Active',
+        label: 'Active/Inactive',
         minWidth: 100,
         align: 'center',
       },
@@ -115,12 +133,15 @@ export default function Events({ Events }) {
               key={event._id}
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
-              <StyledTableCell component="th" scope="row">{event.title}</StyledTableCell>
-              <StyledTableCell align="center">{event.group}</StyledTableCell>
-              <StyledTableCell align="center">{event.event}</StyledTableCell>
-              <StyledTableCell align="center">{event.date.toLocaleString().substring(0,10)}</StyledTableCell>
-              <StyledTableCell align="center">{event.attendees}</StyledTableCell>
-              <StyledTableCell align="center">{event.budget}</StyledTableCell>
+              <StyledTableCell component="th" scope="row">{event.Sno}</StyledTableCell>
+              <StyledTableCell align="center">{event.groups}</StyledTableCell>
+              <StyledTableCell align="center">{event.established}</StyledTableCell>
+              <StyledTableCell align="center">{event.firstEventDate}</StyledTableCell>
+              <StyledTableCell align="center">{event.quarterOfFirstEvent}</StyledTableCell>
+              <StyledTableCell align="center">{event.numberOfEvents}</StyledTableCell>
+              <StyledTableCell align="center">{event.lastEventDate}</StyledTableCell>
+              <StyledTableCell align="center">{event.numberOfActiveOrganizers}</StyledTableCell>
+              <StyledTableCell align="center">{event.isActive}</StyledTableCell>
             </StyledTableRow>
           ))}
           {emptyRows > 0 && (
@@ -149,9 +170,9 @@ export async function getServerSideProps() {
   const { db } = await connectToDatabase();
 
   const Groups = await db
-    .collection("event")
+    .collection("group")
     .find({})
-    .sort({_id: 1})
+    .sort({Sno: 1})
     .limit(20)
     .toArray();
 
@@ -161,4 +182,3 @@ export async function getServerSideProps() {
     },
   };
 }
-
