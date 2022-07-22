@@ -2,88 +2,69 @@ import Head from 'next/head'
 import { connectToDatabase } from '../util/mongodb'
 
 export default function Home({ isConnected }) {
-  return (
-    <div className="container">
-      <Head>
-        <title>Welcome to Mugongo</title>
-        <link rel="icon" href="/icon.png" />
-      </Head>
+    return (
+        <div className="container">
+            <Head>
+                <title>Welcome to Mugongo</title>
+                <link rel="icon" href="/icon.png" />
+            </Head>
 
-      <main>
-        <img src="./mug.svg" alt="Mugongo" width="410" height="120" />
-        <h1 className="Events">
-          MongoDB User Group Logging App
-        </h1>
+            <main>
+                <img src="./mug.svg" alt="Mugongo" width="410" height="120" />
+                <h1>MUGs Dashboard</h1>
 
-        {isConnected ? (
-          <h2 className="subtitle">You are connected to MongoDB</h2>
-        ) : (
-          <h2 className="subtitle">
-            You are NOT connected to MongoDB. Check the <code>README.md</code>{' '}
-            for instructions.
-          </h2>
-        )}
+                <iframe src="https://charts.mongodb.com/charts-m001-qzbhb/embed/dashboards?id=62aae1c8-cc74-4ac0-8e58-95361766df7e&theme=light&autoRefresh=true&maxDataAge=1800&showTitleAndDesc=false&scalingWidth=fixed&scalingHeight=fixed" width="780" height="700" />
 
-        <div className="grid">
+                <div className="grid">
 
-          <a href="http://localhost:3000/form" className="card">
-            <h3>Insert Data &rarr;</h3>
-            <p>Save data into MongoDB.</p>
-          </a>
+                    <a href="http://localhost:3000/" className="card">
+                        <h3>Home &rarr;</h3>
+                        <p>Find all MUG's.</p>
+                    </a>
 
-          <a href="http://localhost:3000/event" className="card">
-            <h3>Events &rarr;</h3>
-            <p>Find all Events.</p>
-          </a>
+                    <a href="http://localhost:3000/form" className="card">
+                        <h3>Insert Data &rarr;</h3>
+                        <p>Save data into MongoDB.</p>
+                    </a>
 
-          <a href="http://localhost:3000/group" className="card">
-            <h3>Groups &rarr;</h3>
-            <p>Find all Groups.</p>
-          </a>
+                    <a href="http://localhost:3000/event" className="card">
+                        <h3>Events &rarr;</h3>
+                        <p>Find all Events.</p>
+                    </a>
 
-          <a href="http://localhost:3000/organizer" className="card">
-            <h3>Leaders &rarr;</h3>
-            <p>Find all Leaders.</p>
-          </a>
+                    <a href="http://localhost:3000/group" className="card">
+                        <h3>Groups &rarr;</h3>
+                        <p>Find all Groups.</p>
+                    </a>
 
+                    <a href="http://localhost:3000/organizer" className="card">
+                        <h3>Leaders &rarr;</h3>
+                        <p>Find all Leaders.</p>
+                    </a>
 
-          <a href="http://localhost:3000/dashboard" className="card">
-            <h3>Dashboard &rarr;</h3>
-            <p>View Detailed Insights.</p>
-          </a>
-        </div>
-      </main>
+                </div>
+            </main>
 
-      <footer>
-        <a
-          href="https://mongodb.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/mug.svg" alt="MongoDB Logo" className="logo" />
-        </a>
-      </footer>
+            <footer>
+                <a
+                    href="https://mongodb.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    Powered by{' '}
+                    <img src="/mug.svg" alt="MongoDB Logo" className="logo" />
+                </a>
+            </footer>
 
-      <style jsx>{`
-      
-        .container {
-          min-height: 100vh;
-          padding: 0 0.5rem;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          background-color: #d1e0d5;
-        }
-
+            <style jsx>{`
         main {
-          padding: 5rem 0;
+          padding: 1rem 1rem 1rem 1rem;
           flex: 1;
           display: flex;
           flex-direction: column;
           justify-content: center;
           align-items: center;
+          background-color: #d1e0d5;
         }
 
         footer {
@@ -154,15 +135,13 @@ export default function Home({ isConnected }) {
           display: flex;
           align-items: center;
           justify-content: center;
-          flex-wrap: wrap;
-
-          max-width: 800px;
+          flex-wrap: nowrap;
+          min-width: 500px;
           margin-top: 3rem;
         }
 
         .card {
           margin: 1rem;
-          flex-basis: 45%;
           padding: 1.5rem;
           text-align: left;
           color: inherit;
@@ -182,6 +161,7 @@ export default function Home({ isConnected }) {
         .card h3 {
           margin: 0 0 1rem 0;
           font-size: 1.5rem;
+          flex-basis: 100%;
         }
 
         .card p {
@@ -197,12 +177,12 @@ export default function Home({ isConnected }) {
         @media (max-width: 600px) {
           .grid {
             width: 100%;
-            flex-direction: column;
+            flex-direction: row;
           }
         }
       `}</style>
 
-      <style jsx global>{`
+            <style jsx global>{`
         html,
         body {
           padding: 0;
@@ -216,16 +196,16 @@ export default function Home({ isConnected }) {
           box-sizing: border-box;
         }
       `}</style>
-    </div>
-  )
+        </div>
+    )
 }
 
 export async function getServerSideProps(context) {
-  const { client } = await connectToDatabase()
+    const { client } = await connectToDatabase()
 
-  const isConnected = await client.isConnected() // Returns true or false
+    const isConnected = await client.isConnected() // Returns true or false
 
-  return {
-    props: { isConnected },
-  }
+    return {
+        props: { isConnected },
+    }
 }

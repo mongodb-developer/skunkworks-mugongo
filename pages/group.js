@@ -308,24 +308,30 @@ export default function Events({ Events }) {
 
       <div className="grid">
 
+
         <a href="http://localhost:3000/" className="card">
           <h3>Home &rarr;</h3>
-          <p>Learn about MUG's.</p>
+          <p>Find all MUG's.</p>
         </a>
 
         <a href="http://localhost:3000/event" className="card">
           <h3>Events &rarr;</h3>
-          <p>Find about Events.</p>
-        </a>
-
-        <a href="http://localhost:3000/organizer" className="card">
-          <h3>Organizers &rarr;</h3>
-          <p>Learn about Organizers.</p>
+          <p>Find all Events.</p>
         </a>
 
         <a href="http://localhost:3000/form" className="card">
           <h3>Insert Data &rarr;</h3>
           <p>Save data into MongoDB.</p>
+        </a>
+
+        <a href="http://localhost:3000/organizer" className="card">
+          <h3>Leaders &rarr;</h3>
+          <p>Find all Leaders.</p>
+        </a>
+
+        <a href="http://localhost:3000/dashboard" className="card">
+          <h3>Dashboard &rarr;</h3>
+          <p>View Detailed Insights.</p>
         </a>
       </div>
       <footer>

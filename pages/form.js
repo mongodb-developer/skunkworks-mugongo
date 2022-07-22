@@ -1,83 +1,89 @@
-import * as React from 'react'; 
+import * as React from 'react';
 
 export default function FormPropsTextFields() {
   return (
     <main>
       <img src="./mug.svg" alt="Mugongo" width="410" height="120" />
-    
-    <div class="row">
-    <div class="col-md-12">
-      <form action="/api/submit" method="post">
-        <h1> Log an Event </h1>
-        
-        <fieldset>
-          
-          <legend><span>1</span> Basic Info</legend>
-        
-          <label for="group">Group:</label>
-          <input type="text" id="group" name="group"  />
-        
-          <label for="date">Date:</label>
-          <input type="date" id="date" name="date"  />
-       
-          <label for="title">Title:</label>
-          <input type="text" id="title" name="title" />
 
-          <label for="topics">Topics:</label>
-          <input type="text" id="topics" name="topics" />
-        
-          <label for="event">Type:</label> <br />
-          <select id="event" name="event">
-              <option value="MUG">MUG Event</option>
-              <option value="University">University Event</option>
-              <option value="Third Party Event">Third Party Event</option>
-          </select>
+      <div class="row">
+        <div class="col-md-12">
+          <form action="/api/submit" method="post">
+            <h1> Log an Event </h1>
 
-        </fieldset>
-        
-        <fieldset>  
-        
-          <legend><span>2</span> Details</legend>
-          
-          <label for="attendees">Attendees:</label>
-          <input type="text" id="attendees" name="attendees"  />
+            <fieldset>
 
-          <label for="duration">Duration:</label>
-          <input type="text" id="duration" name="duration"  />
+              <legend><span>1</span> Basic Info</legend>
 
-          <label for="budget">Budget:</label>
-          <input type="text" id="budget" name="budget"  />
+              <label for="group">Group:</label>
+              <input type="text" id="group" name="group" />
 
-          <label for="primaryLeader">Primary Leader:</label>
-          <input type="text" id="primaryLeader" name="primaryLeader"  />
-          
-         </fieldset>
-       
-        <button type="submit">Submit</button>
-        
-       </form>
-       </div>
-       </div>
-      
+              <label for="date">Date:</label>
+              <input type="date" id="date" name="date" />
+
+              <label for="title">Title:</label>
+              <input type="text" id="title" name="title" />
+
+              <label for="topics">Topics:</label>
+              <input type="text" id="topics" name="topics" />
+
+              <label for="event">Type:</label> <br />
+              <select id="event" name="event">
+                <option value="MUG">MUG Event</option>
+                <option value="University">University Event</option>
+                <option value="Third Party Event">Third Party Event</option>
+              </select>
+
+            </fieldset>
+
+            <fieldset>
+
+              <legend><span>2</span> Details</legend>
+
+              <label for="attendees">Attendees:</label>
+              <input type="text" id="attendees" name="attendees" />
+
+              <label for="duration">Duration:</label>
+              <input type="text" id="duration" name="duration" />
+
+              <label for="budget">Budget:</label>
+              <input type="text" id="budget" name="budget" />
+
+              <label for="primaryLeader">Primary Leader:</label>
+              <input type="text" id="primaryLeader" name="primaryLeader" />
+
+            </fieldset>
+
+            <button type="submit">Submit</button>
+
+          </form>
+        </div>
+      </div>
+
       <div className="grid">
+
         <a href="http://localhost:3000/" className="card">
           <h3>Home &rarr;</h3>
-          <p>Learn about MUG's.</p>
+          <p>Find all MUG's.</p>
         </a>
 
         <a href="http://localhost:3000/event" className="card">
           <h3>Events &rarr;</h3>
-          <p>Find about Events.</p>
+          <p>Find all Events.</p>
+        </a>
+
+        <a href="http://localhost:3000/group" className="card">
+          <h3>Groups &rarr;</h3>
+          <p>Find all Groups.</p>
         </a>
 
         <a href="http://localhost:3000/organizer" className="card">
-          <h3>Organizers &rarr;</h3>
-          <p>Learn about Organizers.</p>
+          <h3>Leaders &rarr;</h3>
+          <p>Find all Leaders.</p>
         </a>
 
-        <a href="http://localhost:3000/form" className="card">
-          <h3>Insert Data &rarr;</h3>
-          <p>Save data into MongoDB.</p>
+        <a href="http://localhost:3000/dashboard" className="card">
+          <h3>Dashboard &rarr;</h3>
+          <p>View Detailed Insights.</p>
         </a>
       </div>
       <footer>
@@ -353,7 +359,7 @@ export default function FormPropsTextFields() {
         }
       `}</style>
 
-     
+
     </main>
   );
 }
