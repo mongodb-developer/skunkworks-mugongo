@@ -1,20 +1,20 @@
 import { connectToDatabase } from "../util/mongodb";
 
-import * as React from 'react';
-import { styled } from '@mui/material/styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
-import TableContainer from '@mui/material/TableContainer';
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
+import * as React from "react";
+import { styled } from "@mui/material/styles";
+import Table from "@mui/material/Table";
+import TableBody from "@mui/material/TableBody";
+import TableCell, { tableCellClasses } from "@mui/material/TableCell";
+import TableContainer from "@mui/material/TableContainer";
+import TableHead from "@mui/material/TableHead";
+import TableRow from "@mui/material/TableRow";
+import Paper from "@mui/material/Paper";
 
 //Table Pagination
-import TablePagination from '@mui/material/TablePagination';
+import TablePagination from "@mui/material/TablePagination";
+import FooterLinks from "../components/FooterLinks";
 
 //Table Pagination State Defination
-
 
 // Table Styling Functions
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -28,11 +28,11 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
+  "&:nth-of-type(odd)": {
     backgroundColor: theme.palette.action.hover,
   },
   // hide last border
-  '&:last-child td, &:last-child th': {
+  "&:last-child td, &:last-child th": {
     border: 0,
   },
 }));
@@ -40,45 +40,43 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 //Columns Rendering For Sticky Header
 const columns = [
   {
-    id: 'Title',
-    label: 'Title',
-    minWidth: 100
-  },
-  {
-    id: 'Group',
-    label: 'Group',
-    align: 'center',
-    minWidth: 100
-  },
-  {
-    id: 'Type',
-    label: 'Type',
+    id: "Title",
+    label: "Title",
     minWidth: 100,
-    align: 'center',
   },
   {
-    id: 'Date',
-    label: 'Date',
+    id: "Group",
+    label: "Group",
+    align: "center",
     minWidth: 100,
-    align: 'center',
   },
   {
-    id: 'Attendees',
-    label: 'Attendees',
+    id: "Type",
+    label: "Type",
     minWidth: 100,
-    align: 'center',
+    align: "center",
   },
   {
-    id: 'Expenditure',
-    label: 'Expenditure',
+    id: "Date",
+    label: "Date",
     minWidth: 100,
-    align: 'center',
+    align: "center",
+  },
+  {
+    id: "Attendees",
+    label: "Attendees",
+    minWidth: 100,
+    align: "center",
+  },
+  {
+    id: "Expenditure",
+    label: "Expenditure",
+    minWidth: 100,
+    align: "center",
   },
 ];
 
-
 export default function Events({ Events }) {
-
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
@@ -95,7 +93,8 @@ export default function Events({ Events }) {
 
   return (
     <main>
-      <img src="./mug.svg" alt="Mugongo" width="410" height="120" />      <TableContainer sx={{ maxHeight: 800 }}>
+      <img src="./mug.svg" alt="Mugongo" width="410" height="120" />{" "}
+      <TableContainer sx={{ maxHeight: 800 }}>
         <Table stickyHeader aria-label="sticky table">
           <TableHead>
             <TableRow>
@@ -111,20 +110,30 @@ export default function Events({ Events }) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {Events.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((event, index) => (
-                <StyledTableRow
-                  key={event._id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <StyledTableCell component="th" scope="row">{event.title}</StyledTableCell>
-                  <StyledTableCell align="center">{event.group}</StyledTableCell>
-                  <StyledTableCell align="center">{event.event}</StyledTableCell>
-                  <StyledTableCell align="center">{event.date ? event.date.toLocaleString().substring(0, 10) : ""}</StyledTableCell>
-                  <StyledTableCell align="center">{event.attendees}</StyledTableCell>
-                  <StyledTableCell align="center">{event.budget}</StyledTableCell>
-                </StyledTableRow>
-              ))}
+            {Events.slice(
+              page * rowsPerPage,
+              page * rowsPerPage + rowsPerPage
+            ).map((event, index) => (
+              <StyledTableRow
+                key={event._id}
+                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+              >
+                <StyledTableCell component="th" scope="row">
+                  {event.title}
+                </StyledTableCell>
+                <StyledTableCell align="center">{event.group}</StyledTableCell>
+                <StyledTableCell align="center">{event.event}</StyledTableCell>
+                <StyledTableCell align="center">
+                  {event.date
+                    ? event.date.toLocaleString().substring(0, 10)
+                    : ""}
+                </StyledTableCell>
+                <StyledTableCell align="center">
+                  {event.attendees}
+                </StyledTableCell>
+                <StyledTableCell align="center">{event.budget}</StyledTableCell>
+              </StyledTableRow>
+            ))}
             {emptyRows > 0 && (
               <TableRow style={{ height: 53 * emptyRows }}>
                 <TableCell colSpan={6} />
@@ -267,7 +276,6 @@ export default function Events({ Events }) {
           }
         }
       `}</style>
-
       <style jsx global>{`
         html,
         body {
@@ -282,45 +290,14 @@ export default function Events({ Events }) {
           box-sizing: border-box;
         }
       `}</style>
-
-      <div className="grid">
-
-        <a href="http://localhost:3000/" className="card">
-          <h3>Home &rarr;</h3>
-          <p>Find all MUG's.</p>
-        </a>
-
-        <a href="http://localhost:3000/group" className="card">
-          <h3>Groups &rarr;</h3>
-          <p>Find all Groups.</p>
-        </a>
-
-        <a href="http://localhost:3000/form" className="card">
-          <h3>Insert Data &rarr;</h3>
-          <p>Save data into MongoDB.</p>
-        </a>
-
-        <a href="http://localhost:3000/organizer" className="card">
-          <h3>Leaders &rarr;</h3>
-          <p>Find all Leaders.</p>
-        </a>
-
-        <a href="http://localhost:3000/dashboard" className="card">
-          <h3>Dashboard &rarr;</h3>
-          <p>View Detailed Insights.</p>
-        </a>
-      </div>
+      <FooterLinks />
       <footer>
-        <a
-          href="https://mongodb.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/mug.svg" alt="MongoDB Logo" className="logo" />
+        <a href="https://mongodb.com" target="_blank" rel="noopener noreferrer">
+          Powered by <img src="/mug.svg" alt="MongoDB Logo" className="logo" />
         </a>
       </footer>
-    </main>);
+    </main>
+  );
 }
 
 // Getting Server Side Props - Connecting to MongoDB and fetching documents.
@@ -339,4 +316,3 @@ export async function getServerSideProps() {
     },
   };
 }
-

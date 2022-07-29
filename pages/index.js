@@ -1,5 +1,6 @@
-import Head from 'next/head'
-import { connectToDatabase } from '../util/mongodb'
+import Head from "next/head";
+import FooterLinks from "../components/FooterLinks";
+import { connectToDatabase } from "../util/mongodb";
 
 export default function Home({ isConnected }) {
   return (
@@ -11,62 +12,27 @@ export default function Home({ isConnected }) {
 
       <main>
         <img src="./mug.svg" alt="Mugongo" width="410" height="120" />
-        <h1 className="Events">
-          MongoDB User Group Logging App
-        </h1>
+        <h1 className="Events">MongoDB User Group Logging App</h1>
 
         {isConnected ? (
           <h2 className="subtitle">You are connected to MongoDB</h2>
         ) : (
           <h2 className="subtitle">
-            You are NOT connected to MongoDB. Check the <code>README.md</code>{' '}
+            You are NOT connected to MongoDB. Check the <code>README.md</code>{" "}
             for instructions.
           </h2>
         )}
 
-        <div className="grid">
-
-          <a href="http://localhost:3000/form" className="card">
-            <h3>Insert Data &rarr;</h3>
-            <p>Save data into MongoDB.</p>
-          </a>
-
-          <a href="http://localhost:3000/event" className="card">
-            <h3>Events &rarr;</h3>
-            <p>Find all Events.</p>
-          </a>
-
-          <a href="http://localhost:3000/group" className="card">
-            <h3>Groups &rarr;</h3>
-            <p>Find all Groups.</p>
-          </a>
-
-          <a href="http://localhost:3000/organizer" className="card">
-            <h3>Leaders &rarr;</h3>
-            <p>Find all Leaders.</p>
-          </a>
-
-
-          <a href="http://localhost:3000/dashboard" className="card">
-            <h3>Dashboard &rarr;</h3>
-            <p>View Detailed Insights.</p>
-          </a>
-        </div>
+        <FooterLinks />
       </main>
 
       <footer>
-        <a
-          href="https://mongodb.com"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Powered by{' '}
-          <img src="/mug.svg" alt="MongoDB Logo" className="logo" />
+        <a href="https://mongodb.com" target="_blank" rel="noopener noreferrer">
+          Powered by <img src="/mug.svg" alt="MongoDB Logo" className="logo" />
         </a>
       </footer>
 
       <style jsx>{`
-      
         .container {
           min-height: 100vh;
           padding: 0 0.5rem;
@@ -217,15 +183,15 @@ export default function Home({ isConnected }) {
         }
       `}</style>
     </div>
-  )
+  );
 }
 
 export async function getServerSideProps(context) {
-  const { client } = await connectToDatabase()
+  const { client } = await connectToDatabase();
 
-  const isConnected = await client.isConnected() // Returns true or false
+  const isConnected = await client.isConnected(); // Returns true or false
 
   return {
     props: { isConnected },
-  }
+  };
 }
